@@ -1,14 +1,20 @@
-#讀取檔案並指定要跳過印出的項目
+import os #作業系統模組
 
-with open('product.csv', 'r', encoding = 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue
-		name, price = line.strip().split(',')
-		print(name, price)
+product = []
+if os.path.isfile('product.txt'):
+	print('找到檔案了！')
+	#讀取檔案並指定要跳過印出的項目
+	with open('product.txt', 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue
+			name, price = line.strip().split(',')
+			print(name, price)
+else:
+	print('找不到檔案...')
+
 
 #請使用者輸入
-product = []
 while True:
 	name = input('請輸入商品名稱：')
 	if name == 'q':
